@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.Commit;
@@ -14,13 +15,14 @@ import org.springframework.test.annotation.Rollback;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-// Integration Test for Data-JPA
+// Integration Test for H2 DB with Spring Data JPA
 // DataJpaTest will bring up Hibernate. If we are using an H2 database
 // it will get auto-configured for us, as well as the entities and
 // spring data-Jpa
 @DataJpaTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ComponentScan(basePackages = {"com.mmutawe.explore.spring.data.jpa.exploringjpa.bootstraps"})
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ExploringJpaApplicationTestsForDatabase {
 
     @Autowired

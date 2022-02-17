@@ -22,6 +22,8 @@ public class MockDataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        bookRepository.deleteAll();
+
         List<Book> books = List.of(
                 new Book("title_book1", "isbn_book1", "publisher_book1"),
                 new Book("title_book2", "isbn_book2", "publisher_book2"),
