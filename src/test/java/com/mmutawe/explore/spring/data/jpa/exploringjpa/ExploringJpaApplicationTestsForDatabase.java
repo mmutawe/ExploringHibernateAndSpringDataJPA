@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.annotation.Commit;
-import org.springframework.test.annotation.Rollback;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,7 +36,7 @@ public class ExploringJpaApplicationTestsForDatabase {
         assertThat(countBefore).isEqualTo(3);
 
 //        bookRepository.save(new Book("book_title_1", "book_isbn_1", "book_publisher_1"));
-        bookRepository.save(new Book("book_title_4", "book_isbn_4", "book_publisher_4"));
+        bookRepository.save(new Book("book_title_4", "book_isbn_4", "book_publisher_4", null));
         long countAfter = bookRepository.count();
         assertThat(countBefore).isLessThan(countAfter);
     }
