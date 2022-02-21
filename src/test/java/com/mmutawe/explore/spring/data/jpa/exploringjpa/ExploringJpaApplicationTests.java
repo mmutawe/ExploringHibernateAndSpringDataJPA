@@ -11,17 +11,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class ExploringJpaApplicationTests {
 
-	@Autowired
-	BookRepository bookRepository;
+    @Autowired
+    BookRepository bookRepository;
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
-	@Test
-	void testBookRepository(){
-		long bookCount = bookRepository.count();
+    @Test
+    void testBookRepository() {
+        long bookCount = bookRepository.count();
 
-		assertThat(bookCount).isGreaterThan(0);
-	}
+        assertThat(bookCount).isGreaterThan(0);
+    }
+
+
 }

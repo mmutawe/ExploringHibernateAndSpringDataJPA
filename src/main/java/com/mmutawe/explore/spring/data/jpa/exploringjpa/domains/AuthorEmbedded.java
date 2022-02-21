@@ -1,0 +1,41 @@
+package com.mmutawe.explore.spring.data.jpa.exploringjpa.domains;
+
+import com.mmutawe.explore.spring.data.jpa.exploringjpa.domains.nameids.NameId;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="author_composite")
+public class AuthorEmbedded {
+
+    @EmbeddedId
+    private NameId nameId;
+
+    private String country;
+
+    public AuthorEmbedded() {
+    }
+
+    public AuthorEmbedded(NameId nameId, String country) {
+        this.nameId = nameId;
+        this.country = country;
+    }
+
+    public NameId getNameId() {
+        return nameId;
+    }
+
+    public void setNameId(NameId nameId) {
+        this.nameId = nameId;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+}

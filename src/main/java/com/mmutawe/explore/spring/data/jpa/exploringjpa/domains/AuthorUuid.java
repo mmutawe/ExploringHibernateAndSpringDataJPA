@@ -1,34 +1,43 @@
 package com.mmutawe.explore.spring.data.jpa.exploringjpa.domains;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
-public class Author {
+public class AuthorUuid {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(length = 36,
+            columnDefinition = "varchar(36)",
+            updatable = false,
+            nullable = false)
+    private UUID id;
 
     private String firstName;
     private String lastName;
 
 
-    public Author() {
+    public AuthorUuid() {
     }
 
-    public Author(String firstName, String lastName) {
+    public AuthorUuid(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -53,9 +62,9 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Author author = (Author) o;
+        AuthorUuid that = (AuthorUuid) o;
 
-        return id != null ? id.equals(author.id) : author.id == null;
+        return id != null ? id.equals(that.id) : that.id == null;
     }
 
     @Override

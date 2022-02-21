@@ -1,18 +1,22 @@
 package com.mmutawe.explore.spring.data.jpa.exploringjpa.domains;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
-public class Book {
+public class BookUuid {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GeneratedValue(strategy = GenerationType.AUTO) // to allow the DB and the provider to automatically assign it ('Auto' allow Hibernate to pick the primary key)
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(//columnDefinition = "BINARY(16)",
+            columnDefinition = "VARBINARY(16)",
+            updatable = false,
+            nullable = false)
+    private UUID id;
     private String title;
     private String isbn;
     private String publisher;
@@ -20,21 +24,21 @@ public class Book {
     private Long authorId;
 
     // no-args constructor will be used by Hibernate
-    public Book() {
+    public BookUuid() {
     }
 
-    public Book(String title, String isbn, String publisher, Long authorId) {
+    public BookUuid(String title, String isbn, String publisher, Long authorId) {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
         this.authorId = authorId;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -67,22 +71,13 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Book book = (Book) o;
-        return Objects.equals(id, book.id);
+        BookUuid bookUuid = (BookUuid) o;
+
+        return id != null ? id.equals(bookUuid.id) : bookUuid.id == null;
     }
 
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", isbn='" + isbn + '\'' +
-                ", publisher='" + publisher + '\'' +
-                '}';
     }
 }
