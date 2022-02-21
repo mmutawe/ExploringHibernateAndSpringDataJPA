@@ -25,9 +25,9 @@ public class MockDataInitializer implements CommandLineRunner {
         bookRepository.deleteAll();
 
         List<Book> books = List.of(
-                new Book("title_book1", "isbn_book1", "publisher_book1"),
-                new Book("title_book2", "isbn_book2", "publisher_book2"),
-                new Book("title_book3", "isbn_book3", "publisher_book3"));
+                new Book("title_book1", "isbn_book1", "publisher_book1", null),
+                new Book("title_book2", "isbn_book2", "publisher_book2", null),
+                new Book("title_book3", "isbn_book3", "publisher_book3", null));
 
         List<Book> savedBooks = bookRepository.saveAll(books);
 
